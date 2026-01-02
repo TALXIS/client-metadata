@@ -1,0 +1,24 @@
+{
+  "name": "@talxis/metadata",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/TALXIS/client-metadata#readme",
+  "bugs": {
+    "url": "https://github.com/TALXIS/client-metadata/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TALXIS/client-metadata.git"
+  },
+  "license": "MIT",
+  "author": "TALXIS",
+  "type": "commonjs",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/xrm": "^9.0.88",
+    "typescript": "^5.9.3"
+  }
+}
