@@ -1,3 +1,5 @@
+import { AppModule } from "../implementation/powerApps/appModule/AppModule";
+import { AppModuleBase } from "../implementation/powerApps/appModule/AppModuleBase";
 import { IEntityDefinition } from "./entity/IEntityDefinition";
 import { ISimpleEntityDefinition } from "./entity/ISimpleEntityDefinition";
 
@@ -22,10 +24,10 @@ export interface IMetadataProvider {
     //     getEntityDefaultFormId(entityName: string): Promise<string>;
     //     getFormNamesAndIds(entityName: string, formType?: any): Promise<{ formid: string; name: string }[]>
     // },
-    // appModule: {
-    //     get(name: string): Promise<any>;
-    //     getAll(): Promise<any[]>;
-    // },
+    appModule: {
+        get(uniqueName: string): Promise<AppModule>;
+        getMultiple(uniqueNames?: string[]): Promise<AppModuleBase[]>;
+    },
     // control: {
     //     get(name: string): Promise<any>;
     // },

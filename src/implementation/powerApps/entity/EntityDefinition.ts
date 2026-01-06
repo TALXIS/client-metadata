@@ -89,6 +89,7 @@ export class EntityDefinition implements IEntityDefinition {
             });
         }
         entityDefinition.Attributes = [];
+        // TODO: Eventually skip getEntityMetadata and just use this call to map everything like in INT0014-MetadataService
         const attributeDetailsResponse = await Xrm.WebApi.online.execute({
             Query: {
                 Criteria: {
