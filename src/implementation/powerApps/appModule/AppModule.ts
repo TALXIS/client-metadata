@@ -35,18 +35,15 @@ export class AppModule implements IAppModule {
         const siteMap = await Xrm.WebApi.retrieveRecord("sitemap", components.find((x: any) => x["Type"] === 62)["Id"], `?$select=sitemapxml`);
         appModule.siteMapXml = siteMap["sitemapxml"];
 
-        // TODO: Resolve descriptor types for forms and views
         const formsToResolve = components.filter((x: any) => x["Type"] === 60);
         const viewsToResolve = components.filter((x: any) => x["Type"] === 26);
         const resolvedFormsRequest = Xrm.WebApi.retrieveMultipleRecords("systemform", `?$select=formid,objecttypecode&$filter=Microsoft.Dynamics.CRM.In(PropertyName='formid',PropertyValues=[${formsToResolve.map((x: any) => `'${x["Id"]}'`).join(",")}])`);
         const resolvedViewsRequest = Xrm.WebApi.retrieveMultipleRecords("savedquery", `?$select=savedqueryid,returnedtypecode&$filter=Microsoft.Dynamics.CRM.In(PropertyName='savedqueryid',PropertyValues=[${viewsToResolve.map((x: any) => `'${x["Id"]}'`).join(",")}])`);
-        await Promise.all([resolvedFormsRequest, resolvedViewsRequest]);
-        const resolvedForms = (await resolvedFormsRequest).entities;
-        const resolvedViews = (await resolvedViewsRequest).entities;
-        for (const form of resolvedForms) {
+        const [resolvedForms, resolvedViews] = await Promise.all([resolvedFormsRequest, resolvedViewsRequest]);
+        for (const form of resolvedForms.entities) {
             formsToResolve.find((x: any) => x["Id"] === form["formid"])["EntityName"] = form["objecttypecode"];
         }
-        for (const view of resolvedViews) {
+        for (const view of resolvedViews.entities) {
             viewsToResolve.find((x: any) => x["Id"] === view["savedqueryid"])["EntityName"] = view["returnedtypecode"];
         }
 
