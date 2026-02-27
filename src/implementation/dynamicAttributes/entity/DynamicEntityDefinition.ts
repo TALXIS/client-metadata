@@ -62,13 +62,7 @@ export class DynamicEntityDefinition implements IEntityDefinition {
                     attribute.talxis_datatypetypecode === DataTypeTypecode.DateTimeUserLocal || attribute.talxis_datatypetypecode === DataTypeTypecode.DateTimeTZI ?
                         DateTimeFormat.DateAndTime : undefined,
             };
-            if(attribute.talxis_datatypetypecode === DataTypeTypecode.Choice || attribute.talxis_datatypetypecode === DataTypeTypecode.Boolean) {
-                if(attribute.talxis_datatypetypecode === DataTypeTypecode.Boolean) {
-                    if(attribute.talxis_talxis_attributedefinition_talxis_attributeoption_attributedefinitionid?.length !== 2) {
-                        console.warn(`Boolean attribute ${attribute.talxis_name} does not have exactly 2 options defined. Skipping option set mapping.`, attribute);
-                        continue;
-                    }
-                }
+            if(attribute.talxis_datatypetypecode === DataTypeTypecode.Choice) {
                 attr.OptionSet = {
                     DisplayName: attribute.talxis_name,
                     Description: attribute.talxis_description,
@@ -78,6 +72,25 @@ export class DynamicEntityDefinition implements IEntityDefinition {
                         Description: option.talxis_description,
                         talxis_OptionId: option.talxis_attributeoptionid
                     })) || []
+                };
+            }
+            else if(attribute.talxis_datatypetypecode === DataTypeTypecode.Boolean) {
+                const userLanguage = Xrm.Utility.getGlobalContext().userSettings.languageId;
+                attr.OptionSet = {
+                    DisplayName: attribute.talxis_name,
+                    Description: attribute.talxis_description,
+                    Options: [
+                        {
+                            Value: 1,
+                            Label: this._getTranslation(userLanguage, "boolean_True"),
+                            Description: this._getTranslation(userLanguage, "boolean_True")
+                        },
+                        {
+                            Value: 0,
+                            Label: this._getTranslation(userLanguage, "boolean_False"),
+                            Description: this._getTranslation(userLanguage, "boolean_False")
+                        }
+                    ]
                 };
             }
 
@@ -126,6 +139,27 @@ export class DynamicEntityDefinition implements IEntityDefinition {
                 return AttributeTypeNameEnum.DateTimeType;
             default:
                 throw new Error(`Unsupported data type code: ${dataTypeCode}`);
+        }
+    }
+
+    private static _getTranslation(languageId: number, key: string): string {
+        if(!this._translations[languageId]) {
+            return key;
+        }
+        else if(!this._translations[languageId][key]) {
+            return key;
+        }
+        return this._translations[languageId][key];
+    }
+
+    private static _translations: Record<number, Record<string, string>> = {
+        1033: {
+            boolean_True: "Yes",
+            boolean_False: "No"
+        },
+        1029: {
+            boolean_True: "Ano",
+            boolean_False: "Ne"
         }
     }
 }
