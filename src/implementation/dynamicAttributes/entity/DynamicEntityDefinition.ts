@@ -23,6 +23,7 @@ export class DynamicEntityDefinition implements IEntityDefinition {
     public static async fetchForRecord(entityName: string, recordId?: string): Promise<DynamicEntityDefinition> {
         const entityDefinition = new DynamicEntityDefinition();
         entityDefinition.LogicalName = entityName;
+        entityDefinition.Attributes = [];
 
         const attributes = await Xrm.WebApi.retrieveMultipleRecords("talxis_attributedefinition",
             "?$filter=" +
