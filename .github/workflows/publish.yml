@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  id-token: write
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -22,6 +25,10 @@ jobs:
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+
+      # Ensure npm 11.5.1 or later is installed - https://docs.npmjs.com/trusted-publishers#github-actions-configuration
+      - name: Update npm
+        run: npm install -g npm@latest
 
       - name: Extract version from tag
         id: get_version
