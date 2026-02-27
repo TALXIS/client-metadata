@@ -24,7 +24,7 @@ export class DynamicEntityDefinition implements IEntityDefinition {
         const entityDefinition = new DynamicEntityDefinition();
         entityDefinition.LogicalName = entityName;
 
-        const attributes = await Xrm.WebApi.retrieveMultipleRecords("talxis_attributedefinitions",
+        const attributes = await Xrm.WebApi.retrieveMultipleRecords("talxis_attributedefinition",
             "?$filter=" +
                 (recordId ? `(talxis_entityname eq '${entityName}' and talxis_recordid eq '${recordId}') or ` : "") +
                 `(talxis_entityname eq '${entityName}' and talxis_recordid eq null) or ` +
