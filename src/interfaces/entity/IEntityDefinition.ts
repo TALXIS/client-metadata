@@ -73,6 +73,9 @@ export interface Attribute {
     DefaultFormValue?: number;
     DefaultValue?: number;
     MaxSizeInKB?: number;
+
+    talxis_AttributeId?: string;
+    talxis_IsDynamic?: boolean;
 }
 
 export enum IntegerFormat {
@@ -177,4 +180,6 @@ export interface Option {
     Color?: string;
     DefaultStatus?: number;
     State?: number;
+    
+    talxis_OptionId?: string;
 }
