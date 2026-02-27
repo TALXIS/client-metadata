@@ -1,0 +1,27 @@
+# Source files
+src/
+*.ts
+!*.d.ts
+
+# Configuration files
+.github/
+.vscode/
+.gitignore
+.npmignore
+tsconfig.json
+rollup.config.js
+
+# Development files
+node_modules/
+*.log
+npm-debug.log*
+
+# Tests
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
+
+# Build artifacts (keep dist/)
+.DS_Store
+Thumbs.db
