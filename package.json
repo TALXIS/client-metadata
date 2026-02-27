@@ -1,6 +1,6 @@
 {
-  "name": "@talxis/metadata",
-  "version": "1.0.0",
+  "name": "@talxis/client-metadata",
+  "version": "0.0.1",
   "description": "TALXIS client metadata provider",
   "homepage": "https://github.com/TALXIS/client-metadata#readme",
   "bugs": {
