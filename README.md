@@ -23,6 +23,43 @@ npm run build
 npm run build:watch
 ```
 
+## FormXml
+
+The package exposes a browser-first FormXml parser and serializer from the root export. It uses native `DOMParser`, `XMLSerializer`, and `Document` APIs, so no XML runtime dependency is required for client usage.
+
+```ts
+import { FormXml, parseFormXml, serializeFormXml } from "@talxis/client-metadata";
+
+const form = parseFormXml(formXmlString, { strict: true });
+const xml = serializeFormXml(form);
+```
+
+`parseFormXml` returns the strongly typed `FormXml` schema from `FormXml.xsd`, and `serializeFormXml` accepts the same typed shape:
+
+```ts
+const form: FormXml = {
+  tabs: {
+    tab: [
+      {
+        name: "general",
+        columns: {
+          column: [
+            {
+              width: "100%",
+              sections: {
+                section: []
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+};
+```
+
+`RibbonDiffXml`, custom control parameters, and unknown extension nodes are preserved as opaque XML nodes for round-trip safety. Full XSD validation is intentionally not performed because `FormXml.xsd` references `RibbonCore.xsd`, which is not included in this repository.
+
 ## Publishing
 
 This package is automatically published to NPM when a new release is created on GitHub.
