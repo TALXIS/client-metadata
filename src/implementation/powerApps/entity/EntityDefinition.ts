@@ -46,7 +46,7 @@ export class EntityDefinition implements IEntityDefinition {
         entityDefinition.IsValidForAdvancedFind = entityMetadata.IsValidForAdvancedFind;
 
         entityDefinition.OneToManyRelationships = [];
-        for (const relationship of Object.values(entityDescriptor.OneToManyRelationShips)) {
+        for (const relationship of Object.values(entityDescriptor.OneToManyRelationships)) {
             entityDefinition.OneToManyRelationships.push({
                 SchemaName: relationship.SchemaName,
                 RelationshipType: RelationshipType.OneToMany,
