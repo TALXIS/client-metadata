@@ -5,7 +5,7 @@ export interface IEntityDescriptor {
     Id: {
         guid: string;
     };
-    OneToManyRelationShips: { [key: string]: IRelationship };
+    OneToManyRelationships: { [key: string]: IRelationship };
     ManyToOneRelationships: { [key: string]: IRelationship };
     ManyToManyRelationships: { [key: string]: IManyToManyRelationship };
 }
