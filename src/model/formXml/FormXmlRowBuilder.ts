@@ -1,4 +1,4 @@
-import type { FormXmlCell, FormXmlRow } from "./schemaTypes";
+import type { FormXmlCell, FormXmlControlDescription, FormXmlRow } from "./schemaTypes";
 import {
     type FormXmlBuilderControlOptions,
     type FormXmlBuilderFieldOptions,
@@ -56,5 +56,16 @@ export class FormXmlRowBuilder {
 
     _buildRow(): FormXmlRow {
         return this.build();
+    }
+
+    _buildControlDescriptions(): FormXmlControlDescription[] {
+        return this._cells.flatMap((cellOrBuilder) => {
+            if (!(cellOrBuilder instanceof FormXmlControlBuilder)) {
+                return [];
+            }
+
+            const controlDescription = cellOrBuilder._buildControlDescription();
+            return controlDescription ? [controlDescription] : [];
+        });
     }
 }

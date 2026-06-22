@@ -34,6 +34,10 @@ export {
     FormXmlTabBuilder,
 } from "./FormXmlBuilder";
 export type {
+    FormXmlBuilderCustomControl,
+    FormXmlBuilderCustomControlParameterDescriptor,
+    FormXmlBuilderCustomControlParameters,
+    FormXmlBuilderCustomControlParameterValue,
     FormXmlBuilderColumnOptions,
     FormXmlBuilderControlOptions,
     FormXmlBuilderFieldOptions,

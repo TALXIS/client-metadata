@@ -9,6 +9,10 @@ export { FormXmlRowBuilder } from "./FormXmlRowBuilder";
 export { FormXmlSectionBuilder } from "./FormXmlSectionBuilder";
 export { FormXmlTabBuilder } from "./FormXmlTabBuilder";
 export type {
+    FormXmlBuilderCustomControl,
+    FormXmlBuilderCustomControlParameterDescriptor,
+    FormXmlBuilderCustomControlParameters,
+    FormXmlBuilderCustomControlParameterValue,
     FormXmlBuilderColumnOptions,
     FormXmlBuilderControlOptions,
     FormXmlBuilderFieldOptions,
@@ -38,7 +42,16 @@ export class FormXmlBuilder {
     }
 
     build(): FormXml {
+        const controlDescriptions = this._tabs.flatMap((tab) => tab._buildControlDescriptions());
+
         return {
+            ...(controlDescriptions.length > 0
+                ? {
+                    controlDescriptions: {
+                        controlDescription: controlDescriptions,
+                    },
+                }
+                : {}),
             tabs: { tab: this._tabs.map((tab) => tab.build()) },
         };
     }

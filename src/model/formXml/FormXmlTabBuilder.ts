@@ -1,4 +1,4 @@
-import type { FormXmlColumn, FormXmlTab } from "./schemaTypes";
+import type { FormXmlColumn, FormXmlControlDescription, FormXmlTab } from "./schemaTypes";
 import {
     generateGuid,
     makeLabels,
@@ -72,5 +72,13 @@ export class FormXmlTabBuilder {
         }
 
         return this._defaultColumn;
+    }
+
+    _buildControlDescriptions(): FormXmlControlDescription[] {
+        if (this._columns.length === 0) {
+            return [];
+        }
+
+        return this._columns.flatMap((column) => column._buildControlDescriptions());
     }
 }

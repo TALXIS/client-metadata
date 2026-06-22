@@ -1,4 +1,4 @@
-import type { FormXmlColumn } from "./schemaTypes";
+import type { FormXmlColumn, FormXmlControlDescription } from "./schemaTypes";
 import {
     type FormXmlBuilderColumnOptions,
     type FormXmlBuilderSectionOptions,
@@ -36,5 +36,9 @@ export class FormXmlColumnBuilder {
 
     _buildColumn(): FormXmlColumn {
         return this.build();
+    }
+
+    _buildControlDescriptions(): FormXmlControlDescription[] {
+        return this._sections.flatMap((section) => section._buildControlDescriptions());
     }
 }

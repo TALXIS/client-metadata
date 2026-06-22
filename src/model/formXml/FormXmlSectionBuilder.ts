@@ -1,4 +1,4 @@
-import type { FormXmlSection } from "./schemaTypes";
+import type { FormXmlControlDescription, FormXmlSection } from "./schemaTypes";
 import {
     generateGuid,
     makeLabels,
@@ -70,5 +70,9 @@ export class FormXmlSectionBuilder {
 
     _buildRows() {
         return this._rows.map((row) => row.build());
+    }
+
+    _buildControlDescriptions(): FormXmlControlDescription[] {
+        return this._rows.flatMap((row) => row._buildControlDescriptions());
     }
 }

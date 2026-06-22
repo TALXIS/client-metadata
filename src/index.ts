@@ -60,6 +60,10 @@ export {
     FormXmlSectionBuilder,
 } from "./model/formXml/FormXmlBuilder";
 export type {
+    FormXmlBuilderCustomControl,
+    FormXmlBuilderCustomControlParameterDescriptor,
+    FormXmlBuilderCustomControlParameters,
+    FormXmlBuilderCustomControlParameterValue,
     FormXmlBuilderColumnOptions,
     FormXmlBuilderControlOptions,
     FormXmlBuilderRowOptions,
