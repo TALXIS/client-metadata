@@ -53,10 +53,16 @@ export type {
 export type * from "./model/formXml/schemaTypes";
 export {
     FormXmlBuilder,
+    FormXmlColumnBuilder,
+    FormXmlControlBuilder,
+    FormXmlRowBuilder,
     FormXmlTabBuilder,
     FormXmlSectionBuilder,
 } from "./model/formXml/FormXmlBuilder";
 export type {
+    FormXmlBuilderColumnOptions,
+    FormXmlBuilderControlOptions,
+    FormXmlBuilderRowOptions,
     FormXmlBuilderTabOptions,
     FormXmlBuilderSectionOptions,
     FormXmlBuilderFieldOptions,
@@ -65,4 +71,3 @@ export type {
 // XRM interfaces
 export { IAttributeDescriptor } from "./implementation/powerApps/entity/xrm/IAttributeDescriptor";
 export { IEntityDescriptor } from "./implementation/powerApps/entity/xrm/IEntityDescriptor";
-

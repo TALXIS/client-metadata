@@ -27,11 +27,17 @@ export {
 
 export {
     FormXmlBuilder,
+    FormXmlColumnBuilder,
+    FormXmlControlBuilder,
+    FormXmlRowBuilder,
     FormXmlSectionBuilder,
     FormXmlTabBuilder,
 } from "./FormXmlBuilder";
 export type {
+    FormXmlBuilderColumnOptions,
+    FormXmlBuilderControlOptions,
     FormXmlBuilderFieldOptions,
+    FormXmlBuilderRowOptions,
     FormXmlBuilderSectionOptions,
     FormXmlBuilderTabOptions,
 } from "./FormXmlBuilder";
