@@ -72,14 +72,16 @@ export function readAttributeValue(name: string, value: string): FormXmlPrimitiv
     }
 
     if (FORM_XML_NUMBER_ATTRIBUTES.has(name) && value !== "") {
-        const numericValue = Number(value);
-
-        if (Number.isFinite(numericValue)) {
-            return numericValue;
-        }
+        return parseNumericValue(value);
     }
 
     return value;
+}
+
+export function parseNumericValue(value: string): FormXmlPrimitiveValue {
+    const numericValue = Number(value);
+
+    return Number.isFinite(numericValue) ? numericValue : value;
 }
 
 export function formatAttributeValue(value: FormXmlPrimitiveValue): string {
@@ -115,4 +117,3 @@ function findParserError(document: XMLDocument): string | undefined {
 
     return parserError.textContent?.trim() || "unknown XML parser error";
 }
-

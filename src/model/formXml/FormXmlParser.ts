@@ -1,7 +1,7 @@
 import {
     FORM_XML_ARRAY_CHILDREN,
     FORM_XML_BOOLEAN_ATTRIBUTES,
-    FORM_XML_NUMBER_ATTRIBUTES,
+    FORM_XML_NUMBER_TEXT_ELEMENTS,
     FORM_XML_OPAQUE_ELEMENTS,
     FORM_XML_ROOT,
     FORM_XML_TEXT_ELEMENTS
@@ -12,6 +12,7 @@ import {
     ParseFormXmlOptions
 } from "./types";
 import {
+    parseNumericValue,
     parseXml,
     readAttributeValue,
     shouldKeepTextNode,
@@ -111,9 +112,8 @@ function readElementTextValue(name: string, value: string): FormXmlPrimitiveValu
         return normalizedValue === "true" || normalizedValue === "1";
     }
 
-    if (FORM_XML_NUMBER_ATTRIBUTES.has(name)) {
-        const numericValue = Number(normalizedValue);
-        return Number.isFinite(numericValue) ? numericValue : normalizedValue;
+    if (FORM_XML_NUMBER_TEXT_ELEMENTS.has(name)) {
+        return parseNumericValue(normalizedValue);
     }
 
     if (["RelationshipRoleOrdinal"].includes(name)) {
@@ -173,4 +173,3 @@ function parseOpaqueElement(element: Element, options: ParseFormXmlOptions): For
         children: parseOpaqueChildren(element, options)
     };
 }
-
