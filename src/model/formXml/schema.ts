@@ -99,13 +99,29 @@ export const FORM_XML_NUMBER_ATTRIBUTES = new Set([
     "columns",
     "colspan",
     "formFactor",
+    "languagecode",
     "labelwidth",
+    "LCID",
     "locklevel",
     "maxWidth",
     "Order",
     "rowheight",
     "rowspan",
-    "Sequence"
+    "Sequence",
+    "type"
+]);
+
+export const FORM_XML_NUMBER_TEXT_ELEMENTS = new Set([
+    "Height",
+    "Width",
+    "RecordsPerPage",
+    "MaxRowsBeforeScroll",
+    "MaxLength",
+    "MinValue",
+    "MaxValue",
+    "Precision",
+    "NumberOfResults",
+    "UClientRecordPerPage"
 ]);
 
 export const FORM_XML_ARRAY_CHILDREN = new Set([
